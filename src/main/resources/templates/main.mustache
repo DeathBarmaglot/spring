@@ -13,27 +13,20 @@
 <div class="d-flex justify-content-center">
     <h2>List of products</h2>
     <form action="/add" method="get">
+        <input type="hidden" name="_cstf" value="{{_csrf.token}}"/>
         <button type="submit" class="btn btn-success mx-4">Add</button>
     <a class="btn btn-primary" href="/users">Users</a>
-        <form action="/logout" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
-<!--    <a class="btn btn-danger" href="/login">LogOut</a>-->
+    </form>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_cstf" value="{{_csrf.token}}"/>
+        <input class="btn btn-danger" type="submit" value="Sign Out"/>
     </form>
 </div>
 <table class="table table-striped">
-    {{#foods}}
-        <tr>
-        <form action="filter" method="post">
-            <td><button type="submit" class="btn btn-outline-success float-sm-right">Seek</button></td>
-        </form>
-        <td>
-            <form action="/main?id={{id}}" method="post">
-                <button type="submit" class="btn btn-outline-danger float-sm-center">Remove</button>
-            </form>
-        </td>
-    </tr>
-        {{/foods}}
+    {{#users}}
+        {{email}}
+        {{id}}
+        {{/users}}
 </table>
 </body>
 </html>

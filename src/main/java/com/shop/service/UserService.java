@@ -1,9 +1,11 @@
 package com.shop.service;
-import com.shop.domain.User;
 
-import java.sql.SQLException;
+import com.shop.web.entity.User;
+
 import java.util.List;
 
 public class UserService {
+
+
 
 }

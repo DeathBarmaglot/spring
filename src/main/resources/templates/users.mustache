@@ -15,16 +15,26 @@
     <form action="/users/add" method="get">
         <button type="submit" class="btn btn-success">Add</button>
         <a class="btn btn-primary" href="/main">Foods</a>
-        <a class="btn btn-danger" href="/">Sign Out</a>
     </form>
-
 </div>
+<h3 class="">Find ...</h3>
+<form method="post" action="filter">
+    <input type="text" name="filter">
+    <button type="submit" class="btn btn-success">Find</button>
+    <input type="hidden" name="_cstf" value="{{_csrf.token}}"/>
+</form>
+
+<form method="post" action="/logout">
+<input type="hidden" name="_cstf" value="{{_csrf.token}}"/>
+<button type="submit" class="btn btn-danger mx-4">LogOut</button>
 <table class="table table-striped">
+
     {{#users}}
 
         <tr>
             <form action="/users/edit" method="post">
-                <td><input style="border: none;" type="hidden" name="id" value="{{id}}"/></td>
+                <input type="hidden" name="_cstf" value="{{_csrf.token}}"/>
+                <td><input style="border: none;" type="text" name="id" value="{{id}}"/></td>
                 <td><input style="border: none;" type="text" name="name" value="{{email}}"/></td>
                 <td><input style="border: none;" type="text" name="comment" value="{{password}}"/></td>
                 <td>
@@ -33,7 +43,8 @@
             </form>
             <td>
                 <form action="/users?id={{id}}" method="post">
-                <button type="submit" class="btn btn-outline-danger float-sm-center">Remove</button>
+                 <input type="hidden" name="_cstf" value="{{_csrf.token}}"/>
+                 <button type="submit" class="btn btn-outline-danger float-sm-center">Remove</button>
                 </form>
             </td>
         </tr>
