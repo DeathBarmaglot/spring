@@ -1,0 +1,19 @@
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  datasource:
+    password: root
+    url: jdbc:postgresql://192.168.31.249:5432/store
+    username: admin
+
+  jpa:
+  hibernate:
+    ddl-auto: create-drop
+  properties:
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      format-sql: true
+  show-sql: true

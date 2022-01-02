@@ -1,0 +1,32 @@
+name: LPTPN
+
+on:
+  push:
+    branches: 
+      - master
+  pull_request:
+    branches: 
+      - master
+  workflow_dispatch:
+
+jobs:
+      
+  python:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:
+        - 'pypy-3.7-v7.3.3' # Python 3.7 and PyPy 7.3.3
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: download
+      run: |
+        pwd
+        ls -la
+        cd TPN
+        ls -la
+        pip install --upgrade pip 
+        docker-compose up -d --force-recreate
