@@ -11,12 +11,13 @@
 </head>
 <body class="d-flex justify-content-center">
 <div class="col-6 col-sm-2">
-    <h2 class="text-center">Welcome</h2>
+    <h2 class="text-center">Log In</h2>
 
-    <form action="/login" method="post">
-        <input type="hidden" name="_cstf" value="{{_csrf.token}}"/>
+    <form action="/users" method="post">
         <div class="form-group mx-sm-6 mb-3 float-sm-right">
-            <label> Email : <input type="email" name="username"/> </label></div>
+            <label> Name : <input type="text" name="username"/> </label></div>
+        <div class="form-group mx-sm-6 mb-3 float-sm-right">
+            <label> Email : <input type="email" name="email"/> </label></div>
         <div class="form-group mx-sm-6 mb-3 float-sm-right">
             <label> Password: <input type="password" name="password"/> </label></div>
         <div><input type="submit" class="btn btn-info mx-sm-6 mb-3 float-sm-right" value="Sign In"/></div>

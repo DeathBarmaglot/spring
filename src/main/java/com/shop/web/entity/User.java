@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -16,14 +16,9 @@ public class User {
     private long id;
 
     private String password;
-    private String role;
     private String email;
-    private Boolean auth;
-
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
-    @Enumerated(EnumType.STRING)
-    private Set<Role> roles;
+    private String username;
+    private LocalDateTime date;
 
     public User() {
     }
@@ -33,9 +28,10 @@ public class User {
         this.email = email;
     }
 
-    public User(String email, String password, String role) {
+
+    public User(String username, String password, String email) {
+        this.username = username;
         this.password = password;
         this.email = email;
-        this.role = role;
     }
 }
