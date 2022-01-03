@@ -15,19 +15,36 @@ public class MainController {
     @Autowired
     private UserDao userDao;
 
+    //TODO userDao
+
+    @RequestMapping(path = "/logout", method = RequestMethod.POST)
+    public String logout(Map<String, Object> model) {
+            return "logout";
+    }
+
+    @RequestMapping(path = "/main", method = RequestMethod.POST)
+    public String deleteUser(@RequestParam Long id, Map<String, Object> model) {
+        userDao.deleteById(id);
+        return "redirect:/main";
+    }
+
     @RequestMapping(path = "/main", method = RequestMethod.GET)
     public String main(Map<String, Object> model) {
         model.put("users", userDao.findAll());
         return "main";
     }
 
-    @RequestMapping(path = "/main", method = RequestMethod.POST)
-    public String postMain(
+    @RequestMapping(path = "/login", method = RequestMethod.POST)
+    public String addUser(
+            @RequestParam String username,
             @RequestParam String email,
-            @RequestParam String password, Map<String, Object> model) {
-        User user = new User(email, password);
-        model.put("users", user);
-        userDao.save(new User(password, email));
+            @RequestParam String password,
+            Map<String, Object> model) {
+        User user = new User(username, email, password);
+        userDao.save(user);
+        Iterable<User> users = userDao.findAll();
+        model.put("users", users);
         return "main";
     }
+
 }

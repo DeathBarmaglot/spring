@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -15,19 +15,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    private String username;
     private String password;
     private String email;
-    private String username;
-    private LocalDateTime date;
+    private boolean active;
+
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles;
 
     public User() {
     }
-
-    public User(String password, String email) {
-        this.password = password;
-        this.email = email;
-    }
-
 
     public User(String username, String password, String email) {
         this.username = username;

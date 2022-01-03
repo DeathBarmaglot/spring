@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Products</title>
+</head>
+
+<body>
+
+<div class="d-flex justify-content-center">
+    <h2 class="mx-4">List of products</h2>
+
+    <form action="/products/add" method="get">
+
+        <button type="submit" class="btn btn-success mx-4">Add</button>
+    </form>
+
+    <form action="/main" method="get">
+
+        <button type="submit" class="btn btn-primary mx-4">Main</button>
+    </form>
+
+     <form action="/logout" method="post">
+        <input class="btn btn-danger mx-4" type="submit" value="SignOut"/>
+    </form>
+
+</div>
+
+
+
+<table class="table table-striped">
+
+    {{#products}}
+
+        <tr>
+            <form action="/products/add" method="post">
+
+                <td><input style="border: none;" type="text" name="name" disabled="disabled" value="{{id}}"/></td>
+                <td><input style="border: none;" type="text" name="name" value="{{name}}"/></td>
+                <td><input style="border: none;" type="text" name="description" value="{{description}}"/></td>
+                <td><input style="border: none;" type="number" name="price" value="{{price}}"/></td>
+                <td><button type="submit" class="btn btn-outline-success float-sm-right">Save</button></td>
+            </form>
+            <td>
+                <form action="/products?id={{id}}" method="post">
+
+                    <button type="submit" class="btn btn-outline-danger float-sm-center">Remove</button>
+                </form>
+            </td>
+            <td>
+            </td>
+        </tr>
+
+    {{/products}}
+</table>
+    <form class="d-flex btn mx-4 float-sm-right" method="post" action="filter">
+
+        <input type="text" name="filter" placeholder="Find ...">
+        <button type="submit" class="btn btn-info mx-4">Find</button>
+    </form>
+</body>
+</html>

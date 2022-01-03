@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Add</title>
+</head>
+<body class="d-flex justify-content-center">
+	<div class="col-6 col-sm-2">
+		<h2 class="text-center">Add Products</h2>
+        <form action="/products/add" method="post">
+
+            <div class="form-group">
+                <label>Name</label>
+                <input name="name" type="text" class="form-group mx-sm-6 mb-3 float-sm-right" aria-describedby="emailHelp" placeholder="Enter name">
+            </div>
+
+		    <div class="form-group">
+				<label>Description</label>
+			    <input name="description" type="text" class="form-group mx-sm-6 mb-3 float-sm-right" aria-describedby="textHelp" placeholder="Enter description">
+			</div>
+			<div class="form-group">
+				<label>Price</label>
+				<input name="price" type="number" min="0" max="10000" class="form-group mx-sm-6 mb-3 float-sm-right" placeholder="Price">
+			</div>
+
+        <button type="submit" class="col-8 col-sm-5 btn btn-success float-sm-right">Submit</button>
+        <a class="btn btn-primary" href="/main">Main</a>
+		</form>
+	</div>
+</body>
+</html>
