@@ -34,7 +34,7 @@
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.jdbcAuthentication().dataSource(dataSource)
 //                .passwordEncoder(NoOpPasswordEncoder.getInstance())
-//                .usersByUsernameQuery("select name, description, active from foods where name=?")
+//                .usersByUsernameQuery("select name, description, email from products where name=?")
 //                .authoritiesByUsernameQuery("select f.name, fr.roles from foods f inner join user_role fr on f.id = fr.food_id where f.name=?");
 //    }
 //}

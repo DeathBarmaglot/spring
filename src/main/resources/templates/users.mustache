@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Main</title>
+    <title>Users</title>
 </head>
 
 <body>
@@ -13,20 +13,19 @@
 <div class="d-flex justify-content-center">
     <h2 class="text-center">List of users</h2>
 
-    <form action="/" method="get">
+    <form action="/users/add" method="get">
 
         <button type="submit" class="btn btn-success mx-4">Add</button>
     </form>
 
-    <form action="/products" method="get">
+    <form action="/" method="get">
 
-        <button type="submit" class="btn btn-primary mx-4">Users</button>
+        <button type="submit" class="btn btn-primary mx-4">Products</button>
     </form>
 
+     <form action="/logout" method="get">
 
-     <form action="/logout" method="post">
-
-        <input class="btn btn-danger  mx-4" type="submit" value="SignOut"/>
+        <input class="btn btn-danger mx-4" type="submit" value="LogOut"/>
     </form>
 
 </div>
@@ -35,7 +34,7 @@
     <h3></h3>
         
         <tr>
-            <form action="/main/add" method="post">
+            <form action="/users/add" method="post">
 
                 <td><input style="border: none;" disabled="disabled" type="text" name="id" value="{{id}}"/></td>
                 <td><input style="border: none;" type="text" name="username" value="{{username}}"/></td>
@@ -44,9 +43,9 @@
                 <td><button type="submit" class="btn btn-outline-success float-sm-right">Save</button></td>
             </form>
             <td>
-                <form action="/main?id={{id}}" method="post">
+                <form action="/users?id={{id}}" method="post">
 
-                <button type="submit" class="btn btn-outline-danger float-sm-center">Remove</button>
+                <button type="submit" class="btn btn-outline-danger float-sm-right">Remove</button>
                 </form>
             </td>
             <td>

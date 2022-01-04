@@ -1,7 +1,8 @@
 # spring
 ### TODO
 ### Security
-#### redirect login/logout
+### name: user, pwd: 1
 ##### duplicate products (refresh/edit)
 ##### remove users
 ##### roles
+

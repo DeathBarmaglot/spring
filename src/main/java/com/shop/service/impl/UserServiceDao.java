@@ -1,7 +1,8 @@
-package com.shop.service;
+package com.shop.service.impl;
 
 import com.shop.dao.RoleDao;
 import com.shop.dao.UserDao;
+import com.shop.service.UserService;
 import com.shop.web.entity.Role;
 import com.shop.web.entity.User;
 import lombok.RequiredArgsConstructor;

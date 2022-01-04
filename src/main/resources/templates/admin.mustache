@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>LogIn</title>
+</head>
+<body class="d-flex justify-content-center">
+<div class="col-6 col-sm-2">
+    <h2 class="text-center">Add User</h2>
+
+    <form action="/login" method="post">
+
+        <div class="form-group mx-sm-6 mb-3 float-sm-right">
+            <label> Name <input type="text" name="username"/> </label></div>
+        <div class="form-group mx-sm-6 mb-3 float-sm-right">
+            <label> Email <input type="email" name="email"/> </label></div>
+        <div class="form-group mx-sm-6 mb-3 float-sm-right">
+            <label> Password <input type="password" name="password"/> </label></div>
+        <div><input type="submit" class="btn btn-info mx-sm-6 mb-3 float-sm-right" value="SignIn"/></div>
+                <a class="btn btn-info" href="/">Main</a>
+    </form>
+        </div>
+
+</div>
+</body>
+</html>

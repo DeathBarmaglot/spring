@@ -1,42 +1,58 @@
 package com.shop.web.controller;
 
-import com.shop.service.UserService;
+import com.shop.dao.UserDao;
 import com.shop.web.entity.User;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.net.URI;
-import java.util.List;
+import java.util.Map;
 
-@RestController
-@RequestMapping("/api")
-@RequiredArgsConstructor
+@Controller
 public class UserController {
-    private final UserService userService;
+    @Autowired
+    private UserDao userDao;
 
-    @GetMapping("/users")
-    public ResponseEntity<List<User>> getUsers() {
-        return ResponseEntity.ok().body(userService.getUsers());
+//    @RequestMapping(path = "/", method = RequestMethod.GET)
+//    public String auth(Map<String, Object> model) {
+//        return "redirect:/login";
+//    }
+
+//    @RequestMapping(path = "/login", method = RequestMethod.GET)
+//    public String login(Map<String, Object> model) {
+//        return "login";
+//    }
+
+    @RequestMapping(path = "/users", method = RequestMethod.POST)
+    public String deleteUser(@RequestParam Long id, Map<String, Object> model) {
+        userDao.deleteById(id);
+        return "redirect:/user";
     }
 
-    @PostMapping("/user/save")
-    public ResponseEntity<User> saveUser(@RequestBody User user) {
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
-        return ResponseEntity.created(uri).body(userService.saveUser(user));
+    @RequestMapping(path = "/users", method = RequestMethod.GET)
+    public String main(Map<String, Object> model) {
+        model.put("users", userDao.findAll());
+        return "users";
     }
 
-    @PostMapping("/role/join")
-    public ResponseEntity<?> joinRoleToUser(@RequestBody JoinForm form) {
-        userService.addRoleToUser(form.getUsername(), form.getRoleName());
-        return ResponseEntity.ok().build();
+    @RequestMapping(path = "/users/add", method = RequestMethod.GET)
+    public String getAdd(Map<String, Object> model) {
+        model.put("users", userDao.findAll());
+        return "new";
     }
-}
 
-@Data
-class JoinForm {
-    private String username;
-    private String roleName;
+    @RequestMapping(path = "/users/add", method = RequestMethod.POST)
+    public String addUser(
+            @RequestParam String username,
+            @RequestParam String password,
+            Map<String, Object> model) {
+        User user = new User(username, password);
+        userDao.save(user);
+        Iterable<User> users = userDao.findAll();
+        model.put("users", users);
+        return "redirect:users";
+    }
+
 }

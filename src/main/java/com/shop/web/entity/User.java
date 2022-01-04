@@ -26,10 +26,9 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles = new ArrayList<>();
 
-    public User(String username, String password, String email) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.email = email;
     }
 
     public User(String username, String password, String email, Collection<Role> roles) {
@@ -38,4 +37,5 @@ public class User {
         this.email = email;
         this.roles = roles;
     }
+
 }
