@@ -15,16 +15,15 @@ public class ProductController {
     @Autowired
     private ProductDao productDao;
 
+    @RequestMapping(path = "/index", method = RequestMethod.GET)
+    public String login(Map<String, Object> model) {
+        return "index";
+    }
+
     @RequestMapping(path = "/products", method = RequestMethod.GET)
     public String products(Map<String, Object> model) {
         model.put("products", productDao.findAll());
         return "products";
-    }
-
-    @RequestMapping(path = "/products", method = RequestMethod.POST)
-    public String deleteProduct(@RequestParam Long id, Map<String, Object> model) {
-        productDao.deleteById(id);
-        return "redirect:/products";
     }
 
     @RequestMapping(path = "/products/add", method = RequestMethod.GET)
@@ -32,6 +31,11 @@ public class ProductController {
         return "add";
     }
 
+    @RequestMapping(path = "/products", method = RequestMethod.POST)
+    public String deleteProduct(@RequestParam Long id, Map<String, Object> model) {
+        productDao.deleteById(id);
+        return "redirect:/products";
+    }
 
     @RequestMapping(path = "/products/add", method = RequestMethod.POST)
     public String addProducts(

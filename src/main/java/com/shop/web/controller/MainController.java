@@ -11,48 +11,40 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Map;
 
 @Controller
-public class UserController {
+public class MainController {
     @Autowired
     private UserDao userDao;
 
-//    @RequestMapping(path = "/", method = RequestMethod.GET)
-//    public String auth(Map<String, Object> model) {
-//        return "redirect:/login";
-//    }
+    //TODO userDao
 
-//    @RequestMapping(path = "/login", method = RequestMethod.GET)
-//    public String login(Map<String, Object> model) {
-//        return "login";
-//    }
+    @RequestMapping(path = "/logout", method = RequestMethod.POST)
+    public String logout(Map<String, Object> model) {
+            return "logout";
+    }
 
-    @RequestMapping(path = "/users", method = RequestMethod.POST)
+    @RequestMapping(path = "/main", method = RequestMethod.POST)
     public String deleteUser(@RequestParam Long id, Map<String, Object> model) {
         userDao.deleteById(id);
-        return "redirect:/user";
+        return "redirect:/main";
     }
 
-    @RequestMapping(path = "/users", method = RequestMethod.GET)
+    @RequestMapping(path = "/main", method = RequestMethod.GET)
     public String main(Map<String, Object> model) {
         model.put("users", userDao.findAll());
-        return "users";
+        return "main";
     }
 
-    @RequestMapping(path = "/users/add", method = RequestMethod.GET)
-    public String getAdd(Map<String, Object> model) {
-        model.put("users", userDao.findAll());
-        return "new";
-    }
-
-    @RequestMapping(path = "/users/add", method = RequestMethod.POST)
+    @RequestMapping(path = "/login", method = RequestMethod.POST)
     public String addUser(
             @RequestParam String username,
+            @RequestParam String email,
             @RequestParam String password,
             Map<String, Object> model) {
-        User user = new User(username, password);
+        User user = new User(username, email, password);
         userDao.save(user);
         Iterable<User> users = userDao.findAll();
         model.put("users", users);
-        return "redirect:users";
+        return "main";
     }
 
 }
