@@ -1,7 +1,2 @@
-# spring
-### TODO
-### Security
-#### redirect login/logout
-##### duplicate products (refresh/edit)
-##### remove users
-##### roles
+# webstore on spring
+![Java CI with Maven](https://github.com/DeathBarmaglot/webstore/actions/workflows/maven.yml/badge.svg)

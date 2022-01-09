@@ -3,8 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" crossorigin="anonymous">
     <title>Products</title>
 </head>
 
@@ -20,15 +19,14 @@
 
     <form action="/main" method="get">
 
-        <button type="submit" class="btn btn-primary mx-4">Main</button>
+        <button type="submit" class="btn btn-primary mx-4">Users</button>
     </form>
 
-     <form action="/logout" method="post">
+    <form action="/logout" method="post">
         <input class="btn btn-danger mx-4" type="submit" value="SignOut"/>
     </form>
 
 </div>
-
 
 
 <table class="table table-striped">
@@ -36,18 +34,18 @@
     {{#products}}
 
         <tr>
-            <form action="/products/add" method="post">
-
+            <form action="/products/edit?id={{id}}" method="post">
                 <td><input style="border: none;" type="text" name="name" disabled="disabled" value="{{id}}"/></td>
                 <td><input style="border: none;" type="text" name="name" value="{{name}}"/></td>
                 <td><input style="border: none;" type="text" name="description" value="{{description}}"/></td>
                 <td><input style="border: none;" type="number" name="price" value="{{price}}"/></td>
+                <td><input style="border: none;" type="text" name="date" value="{{date}}"/></td>
                 <td><button type="submit" class="btn btn-outline-success float-sm-right">Save</button></td>
             </form>
             <td>
                 <form action="/products?id={{id}}" method="post">
 
-                    <button type="submit" class="btn btn-outline-danger float-sm-center">Remove</button>
+                <button type="submit" class="btn btn-outline-danger float-sm-center">Remove</button>
                 </form>
             </td>
             <td>
@@ -56,10 +54,10 @@
 
     {{/products}}
 </table>
-    <form class="d-flex btn mx-4 float-sm-right" method="post" action="filter">
+<form class="d-flex btn mx-4 float-sm-right" method="post" action="filter">
 
-        <input type="text" name="filter" placeholder="Find ...">
-        <button type="submit" class="btn btn-info mx-4">Find</button>
-    </form>
+    <input type="text" name="filter" placeholder="Find ...">
+    <button type="submit" class="btn btn-info mx-4">Find</button>
+</form>
 </body>
 </html>
