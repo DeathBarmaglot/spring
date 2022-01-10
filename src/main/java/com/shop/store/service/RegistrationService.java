@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
-
 public class RegistrationService {
     private final UserService userService;
     private final EmailValidator emailValidator;
@@ -26,20 +25,27 @@ public class RegistrationService {
         if (!isValidEmail) {
             throw new IllegalStateException("email not valid");
         }
-        return userService.sinUp(new User( request.getUsername(), request.getEmail(), request.getPassword(), Role.USER, LocalDateTime.now()));
+        return userService.sinUp(new User(request.getUsername(), request.getEmail(), request.getPassword(), Role.USER, LocalDateTime.now()));
     }
+
     @Transactional
     public String confirmToken(String token) {
-        ConfirmationToken confirmationToken = confirmationTokenService.getToken(token).orElseThrow(() -> new IllegalStateException("token not found"));
+        ConfirmationToken confirmationToken =
+                confirmationTokenService.getToken(token).orElseThrow(() ->
+                        new IllegalStateException("token not found"));
+
         if (confirmationToken.getConfirmedAt() != null) {
             throw new IllegalStateException("email already confirmed");
         }
+
         LocalDateTime expiredAt = confirmationToken.getExpiresAt();
-        if(expiredAt.isBefore(LocalDateTime.now())){
+
+        if (expiredAt.isBefore(LocalDateTime.now())) {
             throw new IllegalStateException("token expired");
         }
+
         confirmationTokenService.setConfirmedAt(token);
-//        userService.enabledUser(confirmationToken.getUser().getEmail());
+        // userService.enabledUser(confirmationToken.getUser().getEmail());
         return "confirmed";
     }
 }

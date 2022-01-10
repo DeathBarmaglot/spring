@@ -34,17 +34,16 @@
     {{#products}}
 
         <tr>
-            <form action="/products/edit?id={{id}}" method="post">
-                <td><input style="border: none;" type="text" name="name" disabled="disabled" value="{{id}}"/></td>
+            <form action="/products/edit/{{id}}?id={{id}}" method="post">
+                <td><input style="border: none;" disabled="disabled" type="text" name="name" disabled="disabled" value="{{id}}"/></td>
                 <td><input style="border: none;" type="text" name="name" value="{{name}}"/></td>
                 <td><input style="border: none;" type="text" name="description" value="{{description}}"/></td>
                 <td><input style="border: none;" type="number" name="price" value="{{price}}"/></td>
-                <td><input style="border: none;" type="text" name="date" value="{{date}}"/></td>
+                <td><input style="border: none;" disabled="disabled" type="text" name="date" value="{{date}}"/></td>
                 <td><button type="submit" class="btn btn-outline-success float-sm-right">Save</button></td>
             </form>
             <td>
-                <form action="/products?id={{id}}" method="post">
-
+                <form action="/products/remove/{{id}}?id={{id}}" method="post">
                 <button type="submit" class="btn btn-outline-danger float-sm-center">Remove</button>
                 </form>
             </td>
@@ -54,8 +53,7 @@
 
     {{/products}}
 </table>
-<form class="d-flex btn mx-4 float-sm-right" method="post" action="filter">
-
+<form class="d-flex btn mx-4 float-sm-right" method="post" action="/products/filter">
     <input type="text" name="filter" placeholder="Find ...">
     <button type="submit" class="btn btn-info mx-4">Find</button>
 </form>
