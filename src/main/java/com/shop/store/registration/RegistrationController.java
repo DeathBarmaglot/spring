@@ -1,4 +1,4 @@
-package com.shop.store.controller;
+package com.shop.store.registration;
 
 import com.shop.store.entity.User;
 import com.shop.store.registration.RegistrationRequest;
